@@ -20,14 +20,14 @@ ds = TabularDatasetFactory.from_delimited_files(path)
 def clean_data(data):
     
     
-    df = ds.to_pandas_dataframe()
+    df = data.to_pandas_dataframe()
     # We drop the empty column TAVG
-    df = df.drop('TAVG')
+    df = df.drop('TAVG',1)
     # Since we are not using deep learning or techniques that have a notion of time we can drop the date and PGTM columns
     # We also drop the station name column
-    df = df.drop(['STATION','NAME','DATE','PGTM'])
-    x = df
-    y = df.pop('PRCP')
+    df = df.drop(['STATION','NAME','DATE','PGTM'],1)
+    x = df.fillna(0)
+    y = x.pop('PRCP')
 
     x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42)
 
@@ -55,10 +55,10 @@ def main():
     run.log("Min samples split:", np.int(args.min_samples_split))
     run.log("Max leaf nodes:", np.int(args.max_leaf_nodes))
 
-    model = LogisticRegression(criterion = args.criterion,
-                               max_depth = args.max_depth,
-                               min_samples_split = args.min_samples_split,
-                               max_leaf_nodes = args.max_leaf_nodes).fit(x_train, y_train)
+    model = DecisionTreeRegressor(criterion = args.criterion,
+                                  max_depth = args.max_depth,
+                                  min_samples_split = args.min_samples_split,
+                                  max_leaf_nodes = args.max_leaf_nodes).fit(x_train, y_train)
 
     accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(accuracy))
