@@ -27,10 +27,24 @@ The data is available in tabular form on Kaggle:
 https://www.kaggle.com/varunnagpalspyz/precipitation-prediction-in-la
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+We will develop models using Microsoft Azure that will predict the precipitation on Los Angeles.
+From the data available we will use the following features for the training of the models:
+
+- Average daily wind speed
+- Average temperature (empty column)
+- Maximum temperature
+- Minimum temperature
+- Direction of fastest 2-minute wind
+
+We will not include time stamps as we will not be using models with time dependant abstractions nor we will use the name of the station.
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+The data will be accessed through a URL from github (copy of the dataset from Kaggle):
+'''
+example_data = 'https://raw.githubusercontent.com/RaikohGrass/ML_Azure_Capstone/main/precipitation_LA.csv'
+dataset = Dataset.Tabular.from_delimited_files(example_data)  
+'''
+
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
