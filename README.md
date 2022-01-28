@@ -92,13 +92,42 @@ The run and the model are shown in the following screenshot:
 
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+For the Hyperdrive experiment we selected a DecisionTreeRegressor from sklearn. This model was of interest as we have never used a DecisionTree for a regression problem before. We wanted to compare the performance of a simple tree with models created by autoML.
 
+For the run we used the following Hyperdrive configuration:
+![image](https://user-images.githubusercontent.com/83981857/151495816-eb0cd7d9-682f-4422-a709-2506141121c8.png)
+
+We wanted to iterate through four of the available parameters of sklearn for this model:
+- Criterion: This will be the function used to decide the splits based on the features
+- Max Depth: Maximum number of levels that our decision tree can reach
+- Min Samples for Split: Minimum number of data samples that are to be used to make a split 
+- Max Leaf Nodes: Maximum number of leaf nodes of our tree
+
+For the first parameter we sampled among two of the available options: 'friedman_mse' and 'poisson'
+The other parameters were integers that were to be sampled from five given values. 
+The maximum depth was selected between 2 and 10 as we didn't want a really complex tree that splitted the whole samples
+The minimum samples was also selected between 2 and 10. Here we didnt expect that much of a change in the accuracy
+The maximum leaf nodes were selected between 4 and 20 also for the sake of keeping the complexity of the model at a basic level.
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+We got a model with the following parameters and metrics:
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+- Criterion: 'friedman_mse'
+- Max Depth: 10
+- Max Leaf Nodes: 4
+- Min Samples for Split: 6
+
+![image](https://user-images.githubusercontent.com/83981857/151497408-e8c6329e-d4d4-4481-8244-6329da0e4de7.png)
+
+The model had a R2 score of 0.3658, which was a bit below our autoML model (0.4556)
+We could have improved the model by allowing a higher complexity, i.e., to increase the range of the Max Depth parameter. We can also increase dramatically the number of runs for the Hyperdrive optimization.
+
+We can see some details of the run on the following screenshots:
+![hyperdrive_widget](https://user-images.githubusercontent.com/83981857/151497361-c8f7f01d-644d-48e4-ac4b-53e2210d5224.JPG)
+
+![hyperdrive_run_and_model](https://user-images.githubusercontent.com/83981857/151496976-7079fb66-cd5e-4e50-ba44-12d7da1563d3.JPG)
+
+
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
