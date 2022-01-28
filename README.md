@@ -130,13 +130,32 @@ We can see some details of the run on the following screenshots:
 
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+The deployment of the model was pretty straight forward. We defined an environment based on the model provided by the autoML run.
+The environment includes all the dependencies and libraries needed to handle the model created.
+In order to interface and use the model for predictions we created an InferenceConfig that used the script created by autoML to make the predictions using the model.
+The next step was to define a ACI instance and deploy the model:
+![image](https://user-images.githubusercontent.com/83981857/151498382-a95f1cf0-9a45-4dc6-b3a1-befc447d2d01.png)
+
+Having defined the InferenceConfig and the ACI instance we proceed to deploy the model as a web service:
+![image](https://user-images.githubusercontent.com/83981857/151498543-a65ab070-f8c9-4686-82da-53216c01f7ff.png)
+
+We can check out the URI for the RESTapi and the Swagger documentation:
+![image](https://user-images.githubusercontent.com/83981857/151498680-b216c4fd-a2d4-4ef1-8a56-962bb7d7217a.png)
+
+
+To use the deployed webservice we can select a datasample to be used as a data payload. 
+This payload should be transformed into a JSON that follows the format of the needed POST request. 
+Including the headers we can send the payload and get a response from the service:
+
+![image](https://user-images.githubusercontent.com/83981857/151498723-c52b5abb-9659-4627-8d57-3856ccd369ff.png)
+
+Here is important to notice that we followed the instructions provided by the "consume" tab of the deployed model, as using the common "requests" library didn't work out.
+
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+
+
 
 ## Standout Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
