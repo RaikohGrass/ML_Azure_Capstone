@@ -155,6 +155,8 @@ Here is important to notice that we followed the instructions provided by the "c
 
 ## Screen Recording
 
+Video of the project:
+https://youtu.be/m69ojRNL3Hg
 
 
 ## Standout Suggestions
