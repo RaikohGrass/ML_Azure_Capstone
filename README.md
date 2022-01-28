@@ -143,6 +143,8 @@ Having defined the InferenceConfig and the ACI instance we proceed to deploy the
 We can check out the URI for the RESTapi and the Swagger documentation:
 ![image](https://user-images.githubusercontent.com/83981857/151498680-b216c4fd-a2d4-4ef1-8a56-962bb7d7217a.png)
 
+We can also look at the endpoint tab in Azure that the endpoint we created is "healty" and available:
+![autoML_endpoint](https://user-images.githubusercontent.com/83981857/151549507-fc148c55-7af3-4548-a05c-01396be7bd82.JPG)
 
 To use the deployed webservice we can select a datasample to be used as a data payload. 
 This payload should be transformed into a JSON that follows the format of the needed POST request. 
